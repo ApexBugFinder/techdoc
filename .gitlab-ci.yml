@@ -1,0 +1,106 @@
+# You can override the included template(s) by including variable overrides
+# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
+# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
+# Note that environment variables can be set in several places
+# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+image: node:latest
+variables:
+  FF_USE_FASTZIP: "true"
+  IMAGE_TAG: $CI_REGISTRY_IMAGE/techdocang/app-image:$CI_COMMIT_REF_SLUG
+  STAGING_APP: techdocang-staging
+  HEROKU_STAGING: "registry.heroku.com/$STAGING_APP/web"
+  PRODUCTION_APP: techdocang-production
+  FEATURE_APP: "$CI_ENVIRONMENT_SLUG"
+  HEROKU_PROD: "registry.heroku.com/$PRODUCTION_APP/web"
+
+cache:
+  untracked: true
+  policy: push
+  key: ${CI_COMMIT_SHORT_SHA}
+  paths: [node_modules/]
+
+.pull_cached_node_modules:
+  cache:
+    untracked: true
+    key: ${CI_COMMIT_SHORT_SHA}
+    policy: pull
+
+stages:
+  - setup
+  - test
+  - build-stage
+  - deploy-stage
+  - deploy-server-stage
+
+
+
+install:
+  stage: setup
+  image: node:latest
+  before_script:
+    - apt-get update
+    - node --version
+    - npm install -g npm@8.13.2
+    - npm --version
+  script:
+    - npm install
+    - npm version
+
+# test:
+#   stage: test
+
+#   extends: .pull_cached_node_modules
+#   before_script:
+#     - apt-get update
+#     - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+#     - apt install -y ./google-chrome*.deb;
+#     - export CHROME_BIN=/usr/bin/google-chrome
+#   script:
+#     - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+
+
+build:
+  stage: build-stage
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  # - docker login -u obasi79 -p $DOCKER_AUTH_CONFIG https://index.docker.io/v1
+  script:
+    - docker build -t $IMAGE_TAG .
+    - docker images
+    - docker push $IMAGE_TAG
+
+
+deploy:
+  stage: deploy-stage
+  image: docker:latest
+  services:
+    - docker:dind
+  environment:
+    name: staging
+    url: https://$STAGING_APP.herokuapp.com/
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+  script:
+    - docker pull $IMAGE_TAG
+    - docker tag $IMAGE_TAG $HEROKU_STAGING
+    - docker login -u _ -p $HEROKU_STAGING_API_KEY registry.heroku.com
+    - docker push $HEROKU_STAGING
+    - docker run --rm -e HEROKU_API_KEY=$HEROKU_STAGING_API_KEY wingrunr21/alpine-heroku-cli container:release web --app $STAGING_APP
+    - echo "App deployed to staging server at https://$STAGING_APP.herokuapp.com/"
+
+deploy-server:
+  stage: deploy-server-stage
+  image: node:latest
+  script:
+    - npm run start
+
+
+
+
+
+

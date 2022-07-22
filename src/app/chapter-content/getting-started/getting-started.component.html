@@ -1,0 +1,94 @@
+<section id="gettingStarted" class="infoChapter">
+  <div class="sectionContainer">
+
+    <div class="chapterContent">
+      <h4>Let's install NgRx:</h4>
+
+      <div class="chapterContent-ul gettingStartedUL1">
+        <li class="chapterContent-li"> <span>First install the prerequisites:</span>
+          <div class="ngrxPreReqs">
+
+            <div class="nodeContainer">
+              <a class="node" href="https://nodejs.org" target="#blank"><img class="logoSize"
+                src="https://firebasestorage.googleapis.com/v0/b/techdocang.appspot.com/o/site-SVGs%2Fnode_logo.svg?alt=media&token=7e65b19d-b3c6-4428-9b77-f773f104dac8" alt="node logo" /></a>
+            </div>
+            <div class="npmContainer">
+              <a class="npm" href="https://npmjs.com" target="#blank"><img class="logoSize"
+                src="https://firebasestorage.googleapis.com/v0/b/techdocang.appspot.com/o/site-SVGs%2Fnpm-logo-red.svg?alt=media&token=3d259330-dd05-4358-b7ae-03850f256cd3" alt="node logo" /></a>
+            </div>
+            <div class="angularContainer">
+              <a class="angular" href="https://angular.io" target="#blank"><img class="logoSize"
+                src="https://firebasestorage.googleapis.com/v0/b/techdocang.appspot.com/o/site-SVGs%2Fangular.svg?alt=media&token=bc0ba76a-98b7-4ccf-b30f-5899872af8dc" alt="node logo" /></a>
+            </div>
+          </div>
+
+
+        </li>
+        <li class="chapterContent-li"><span>Then install the ngrx Store</span>
+
+
+          <div class="terminalCode gettingStartedTerminalCode1">
+            <pre>
+
+
+                    <kbd><span class="decoratorStyle">&gt; </span>npm install @ngrx/store --save</kbd>
+
+
+                </pre>
+          </div>
+        </li>
+        <li class="chapterContent-li">
+          <span>
+            Import StoreModule into the project imports in your
+            <span class="filename">app.module.ts</span> file :
+          </span>
+
+          <div class="codeBlock  gettingStartedCodeBlock1">
+            <pre id="" class="codeInputBlock">
+
+
+                                              <code class="coderBlock">
+
+
+                                                     <p> <span class="importStyle">import</span> &#123; <span class="moduleStyle">StoreModule</span> &#125; from <span class="fileStyle">&#39;&#64;ngrx/store&#39;</span>&#59;  </p>
+                                                     <br>
+
+
+                                                      <p><span class="decoratorStyle">&#64;NgModule</span>&#40;&#123;</p>
+                                                          <p>imports: [</p>
+                                                              <div class="codeIndent">
+                                                                  <p>...</p>
+                                                                  <p><span class="moduleStyle">StoreModule</span>.<span class="decoratorStyle">forRoot</span>&#40;&#123;&#125;&#41;,</p>
+
+                                                              </div>
+
+                                                          ]
+                                                      <p>&#125;&#41;&#59;</p>
+
+
+
+
+
+                                              </code>
+                                          </pre>
+
+            <div class="codefileInfo">
+              <span class="folderStyle">app</span> &gt;
+              <span class="folderStyle">state</span> &gt;
+              <span class="filename">app.state.ts</span>
+            </div>
+          </div>
+        </li>
+      </div>
+
+
+
+
+
+
+      <p>Congratulations you have now added NgRx to your project.</p>
+    </div>
+  </div>
+</section>
+
+

@@ -1,0 +1,54 @@
+<section id="creatingFeatureSelectors" class="infoChapter">
+  <div class="sectionContainer">
+
+    
+    <div class="chapterContent">
+      <p>Also declared in the feature reducer file are the selectors. The selectors are pure functions that are
+        defined in the reducer.ts
+        file and used by the components and services to listen to the state and convey any changes to all
+        subscribed parties. In
+        this example we are defining selectors that will access the state values for the username, currentUser, or
+        whether the user
+        is authenticated. This can be very helpful because you can monitor the user's authentication and control
+        the user's access
+        across the entire site through the immutable state. In the code below a feature selector is created and
+        all the selectors are
+        attached, almost as if you are creating a domain in which the selectors can be found.</p>
+
+      <div class="codeBlock generalCodeBlock creatingSelectorsCodeBlock1">
+        <pre id="codeInputBlock" class="codeInputBlock">
+                                              <code class="coderBlock">
+
+                                                  <p><span class="interfaceStyle">const </span><span class="moduleStyle">getProductFeatureState =</span></p>
+                                                  <p><span class="decoratorStyle codeIndent">createFeatureSelector</span><<span class="folderStyle">ProductState</span>>(<span class="fileStyle">`users`</span>);</p>
+                                                  <br>
+                                                  <p><span class="importStyle">export </span><span class="interfaceStyle">const </span><span class="moduleStyle">getIsUserAuthenticated</span>.<span class="decoratorStyle">createSelector</span> (</p>
+                                                  <p><span class="moduleStyle codeIndent">getProductFeatureState</span>,</p>
+                                                  <p><span class="moduleStyle codeIndent">state => state.isAuthenticated</span>);</p>
+                                                  <br>
+                                                  <p><span class="importStyle">export </span><span class="interfaceStyle">const </span><span class="moduleStyle">getCurrentUser</span>.<span class="decoratorStyle">createSelector</span> (</p>
+                                                  <p><span class="moduleStyle codeIndent">getProductFeatureState</span>,</p>
+                                                  <p><span class="moduleStyle codeIndent">state => state.currentUser</span>);</p>
+                                                  <br>
+                                                  <p><span class="importStyle">export </span><span class="interfaceStyle">const </span><span class="moduleStyle">getMaskUserName</span>.<span class="decoratorStyle">createSelector</span> (</p>
+                                                  <p><span class="moduleStyle codeIndent">getProductFeatureState</span>,</p>
+                                                  <p><span class="moduleStyle codeIndent">state => state.maskUserName</span>);</p>
+
+                                              </code>
+                                          </pre>
+        <div class="codefileInfo">
+          <span class="folderStyle codeIndent">app</span> >
+          <span class="folderStyle">user</span> >
+          <span class="folderStyle">state</span> >
+          <span class="filename">user.reducer.ts</span>
+        </div>
+
+      </div>
+
+      <p>If the status of the user's authentication changes at any time the store is updated via NgRx actions and
+        immediately all
+        subscribed parties are notified. The process for changing the store's data begins with NgRx actions.</p>
+
+    </div>
+  </div>
+</section>

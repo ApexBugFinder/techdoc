@@ -1,0 +1,40 @@
+#nav-bar .nav-list {
+    list-style-type: none;
+    padding: 0px;
+    
+}
+
+
+.currentLink {
+    color: var(--primaryColor);
+    background-color: pink;
+    opacity: .5;
+}
+.normalLink {
+    background-color: var(--accent1Color);
+    height:40px;
+}
+
+mat-nav-list {
+    list-style-type: none;
+    
+    z-index: 25;
+}
+mat-list-item {
+    border-left: 2px solid var(--secondaryColor);
+    border-right: 2px solid var(--secondaryColor);
+    border-top: 2px solid var(--secondaryColor);
+    height: 38px;
+}
+mat-list-item:hover {
+    background-color: var(--primaryColor);
+}
+mat-list-item:last-child {
+    border-bottom: 2px solid var(--secondaryColor);
+}
+mat-list-item:hover {
+    background-color: var(--primaryColor);
+}
+mat-list-item:active {
+    color: var(--accent2Color);
+}

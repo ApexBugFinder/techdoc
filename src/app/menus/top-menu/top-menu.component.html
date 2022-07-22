@@ -1,0 +1,24 @@
+    <div class="topMenuContainer">
+        <div class="topMenuContentContainer">
+
+
+        <div class="topMenu">
+            <div id="top-nav-bar" #topNavBar class="top-nav-bar hide-nav-bar">
+
+
+
+            <mat-nav-list class="top-nav-list">
+                <mat-list-item class="normal">NGRX: The Basics</mat-list-item>
+
+                <mat-list-item *ngFor="let chapter of chapterList" class="normalLink" routerLink="{{chapter.address}}" routerLinkActive="currentLink" (click)="toggleTopMenu()">{{chapter.heading}}</mat-list-item>
+
+            </mat-nav-list>
+        </div>
+    </div>
+
+    <div class="topMenuButton">
+        <a  (click)="toggleTopMenu()">
+       <img src="https://firebasestorage.googleapis.com/v0/b/techdocang.appspot.com/o/site-SVGs%2Fngrx_logo.svg?alt=media&token=599b8652-250d-475f-b566-8981c8d26153" alt="top menu button" class="top-menu-button-icon"></a>
+    </div>
+</div>
+</div>

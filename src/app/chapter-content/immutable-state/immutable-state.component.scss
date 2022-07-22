@@ -1,0 +1,43 @@
+.doDontsBlock {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 20px auto 40px  auto;
+    
+}
+
+.dosDontsTitleBlock {
+    height: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+   
+
+}
+.dosTitle {
+    width: 50%;
+    color: var(--primaryColor);
+    
+}
+.dosDontsTitleBlock p {
+    font-weight: 800;
+}
+.dontsTitle {
+    width: 50%;
+    padding-left: 5%;
+    color: #bb0404;
+}
+.dosDontsContentBlock {
+display: flex;
+flex-direction: row;
+
+}
+.doBlock {
+    width: 50%;
+
+}
+.dontBlock {
+    width: 50%;
+    padding-left: 5%;
+    border-left: #707070 solid 3px;
+}

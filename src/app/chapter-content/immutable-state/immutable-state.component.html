@@ -1,0 +1,70 @@
+<section id="state" class="infoChapter">
+  <div class="sectionContainer">
+    <!-- <app-chapter-heading [heading]="this.myHeading"></app-chapter-heading> -->
+    <div class="chapterContent">
+      <p>
+        Every angular application must manage its’ state. As your
+        application grows so does the size of the state that the
+        application has to manage. Larger state means more application
+        to manage more information, more state to manage, more actions
+        and reactions to state changes to track and test. Very powerful
+        when all the pieces of application state is held in one place
+        the store because it will help with reasoning about user
+        interaction, debugging, performance and avoiding race
+        conditions.
+      </p>
+
+      <p>
+        The store is what we call an immutable store. Immutability is
+        paramount to the integrity of the store. Immutability insures
+        the data is accurate across all components by insuring there is
+        only one path to changing the store. For the redux pattern to
+        work you must follow the redux principals of immutability:
+      </p>
+
+      <ul class="chapterContent-ul">
+        <li class="chapterContent-li">
+          If you need to change state of the store always replace the
+          whole state object and not mutate part of it
+        </li>
+        <li class="chapterContent-li">
+          Only use actions to change the state of the store
+        </li>
+        <li class="chapterContent-li">
+          Data that never changes is easier to reason about, track, and
+          test.
+        </li>
+      </ul>
+
+      <p>
+        What kind of information can I store in my State/Immutable
+        Store?
+      </p>
+
+      <div class="doDontsBlock">
+        <div class="dosDontsTitleBlock">
+          <div class="dosTitle">
+            <p>Do's</p>
+          </div>
+          <div class="dontsTitle">
+            <p>Don'ts</p>
+          </div>
+        </div>
+        <div class="dosDontsContentBlock">
+          <div class="doBlock">
+            <p>View State</p>
+            <p>User Information</p>
+            <p>Entity Data</p>
+            <p>User Selection and Input</p>
+          </div>
+
+          <div class="dontBlock">
+            <p>Unshared State</p>
+            <p>Angular form state</p>
+            <p>Non-serializable state - Router State</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

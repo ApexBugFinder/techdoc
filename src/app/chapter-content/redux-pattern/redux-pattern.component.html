@@ -1,0 +1,54 @@
+<section id="reduxPattern" class="infoChapter">
+  <div class="sectionContainer">
+
+    <div class="chapterContent">
+      <p>
+        The redux pattern is very handy for updating and tracking
+        changes to a data store that multiple resources rely on for
+        up-to-date information simultaneously. How does this pattern
+        keep all components dependent on a single source synchronized to
+        one data source?
+      </p>
+      <div class="reduxListContainer">
+
+
+        <ul class="chapterContent-ul-numbered">
+          <li class="chapterContent-li">
+            It uses selectors to get the latest information that is stored
+            in the store/state.
+          </li>
+          <li>
+            This information is gathered in the component and displayed in
+            the view.
+          </li>
+          <li>
+            When the user interacts with view and changes the state of the
+            application this information and new state will be packaged
+            into actions in the Component and sent to the reducers.
+          </li>
+          <li>
+            The reducers are listening for specific actions that carry
+            payloads of new information about the changes to the state
+          </li>
+          <li>
+            The reducers copy the existing data and augment it with the
+            payload from the actions carrying the new changes to state
+            using a spread operator, creating the new state.
+          </li>
+          <li>The new state is saved to the store</li>
+          <li>
+            The selectors that have been listening for changes to the
+            state, notify all the components subscribed simultaneously of
+            the new state.
+          </li>
+        </ul>
+      </div>
+      <img src="https://firebasestorage.googleapis.com/v0/b/techdocang.appspot.com/o/site-videos%2FNGRX-reduxPatttern-slide4.gif?alt=media&token=fc7bcea1-5eaa-431b-b447-770c0da7fdc7" alt="" class="reduxGiff">
+      <p>
+        The process happens over and over again. The store cannot be
+        changed directly and all changes to the store must follow this
+        strict process in order to protect the integrity of the data.
+      </p>
+    </div>
+  </div>
+</section>

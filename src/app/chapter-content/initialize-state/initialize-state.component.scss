@@ -1,0 +1,43 @@
+.folderInTextStyle {
+    color: var(--folderColor);
+}
+.initializeStateGridBlock {
+ display: flex;
+ flex-direction: row;
+ margin-bottom: 0px;
+width: 70%;
+margin: 40px auto 0 auto;
+
+}
+.picBlock {
+    width: 40%;
+  
+}
+.rightSideBlock {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    width: 60%;
+    padding: 20px;
+    justify-content: center;
+}
+#appStateTreeFig {
+    
+    max-height: 520px;
+}
+
+.initCodeBlock1 {
+ 
+    width: 300px;
+    margin: auto;
+    
+   
+}
+
+.initCodeBlock1 .coderBlock {
+ 
+    padding: 1vw 4vw;
+}
+.initCodeBlock1 .codefileInfo {
+    width: 300px;
+}

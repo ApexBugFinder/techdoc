@@ -1,0 +1,214 @@
+#featureStateTree {
+  width: 55%;
+  margin: 40px auto;
+}
+
+
+.featureStateGrid1 {
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
+  width: 100%;
+
+}
+
+.featureStateGrid1PicBlock {
+  width: 65%;
+}
+
+#featureStatGridPic2 {
+  width: 30vmax;
+}
+
+.featureStateGrid1CodeBlock {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.featureCodeUsersBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  padding: 0px;
+}
+
+.featureCodeUsersBlock .coderBlock {
+  width: 100%;
+}
+
+.featureCodeProductsBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0px;
+}
+
+.featureCodeProductsBlock .codeInputBlock {
+  border: 1px solid var(--folderColor);
+  margin: 0px 0px;
+  width: 100%;
+
+}
+
+.featureCodeUsersBlock .codeInputBlock {
+  border: 1px solid var(--folderColor);
+  margin: 0px 0px;
+  width: 100%;
+  padding: 0;
+}
+
+p.featureSliceTitle {
+  margin-top: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  justify-self: flex-start;
+  font-size: 1.2rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 1px solid var(--folderColor);
+  border: 1px solid var(--folderColor);
+  border: 1px solid var(--folderColor);
+  border-bottom: none;
+  background-color: lightgrey;
+  text-shadow: 1px 1px 2px rgba(252, 176, 212, 0.47);
+
+}
+
+.featureStateGrid2 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}
+
+.featureStateGrid2Pic {
+
+  margin: auto;
+
+}
+
+#featureStatePic3 {
+  margin: auto;
+}
+
+.featureStateGrid2CodeBlock {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: auto;
+  column-gap: 40px;
+  justify-content: space-around;
+}
+
+@media (max-width: 1153px) {
+  .featureStateGrid2CodeBlock {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    column-gap: 40px;
+    align-items: center;
+  }
+
+  .featureStateGrid2CodeBlock1 .codefileInfo {
+    width: 100%;
+    height: 20px;
+    padding: 1vw 0;
+
+  }
+
+  .featureStateGrid2CodeBlock1 code.coderBlock {
+    padding: 1vw 4vw;
+    width: 100%;
+
+  }
+
+  .featureStateGrid2CodeBlock1 .codeInputBlock {
+    width: 100%;
+  }
+
+  .featureStateGrid2CodeBlock2 .codefileInfo {
+    width: auto;
+    height: 20px;
+    padding: 1vw 0;
+  }
+
+  .featureStateGrid2CodeBlock2 code.coderBlock {
+    padding: 1vw 4vw;
+    width: auto;
+
+
+  }
+
+}
+
+.featureStateGrid2CodeBlock1 .codefileInfo {
+  width: auto;
+  height: 20px;
+  padding: 1vw 0px;
+
+}
+
+.featureStateGrid2CodeBlock1 .coderBlock {
+  padding: 1vw 4vw;
+  width: auto;
+}
+
+.featureStateGrid2CodeBlock1 .codeInputBlock {
+  width: auto;
+}
+
+
+.featureStateGrid2CodeBlock2 .codefileInfo {
+  width: auto;
+  height: 20px;
+  padding: 1vw 0px;
+
+}
+
+.featureStateGrid2CodeBlock2 .codeInputBlock {
+  width: auto;
+}
+
+.featureStateGrid2CodeBlock2 .coderBlock {
+  padding: 1vw 4vw;
+}
+
+.propertyStyle {
+  margin-left: 40px;
+  color: lightskyblue;
+}
+
+.booleanStyle {
+  color: darkblue;
+}
+
+
+.featureSlice {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.featureSliceTitle {
+  margin: 0px;
+  padding: 8px 8px;
+  border-bottom: 1px solid var(--folderColor);
+}
+
+.empFeature {
+  color: var(--accent1Color);
+  font-weight: 600;
+}
+
+.featureSlice li {
+  font-size: 12px;
+}
+
+p.propertyStyle {
+  margin: 0px;
+}

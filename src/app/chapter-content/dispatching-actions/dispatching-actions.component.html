@@ -1,0 +1,41 @@
+<section id="dispatchingActions" class="infoChapter">
+  <div class="sectionContainer">
+
+    <div class="chapterContent">
+      <p>Now that we have actions defined we can now dispatch them in the components with ease and with very
+        little amount of code needed.</p>
+
+      <div class="codeBlock generalCodeBlock dispatchingActionsCodeBlock1">
+        <pre id="codeInputBlock" class="codeInputBlock">
+                                          <code class="coderBlock">
+
+                                            <p><span class="decoratorStyle">checkChanged</span>&#40;<span class="moduleStyle">value</span>: <span class="folderStyle">boolean</span>&#41;: <span class="folderStyle">void </span> &#123;</p>
+                                              <p><span class="interfaceStyle">this</span>.<span class="moduleStyle">store</span>.<span class="decoratorStyle">dispatch</span>&#40;</p>
+                                              <p><span class="interfaceStyle codeIndent">new</span><span class="folderStyle">productActions.ToggleProductCode</span>&#40;<span class="moduleStyle">value</span>&#41;&#41;;</p>
+                                              <p>&#125;</p>
+                                              <br>
+
+                                              <p><span class="decoratorStyle">newProduct</span>&#40;<span class="moduleStyle">product</span>: <span class="folderStyle">Product</span>&#41;: <span class="folderStyle">void </span> &#123;</p>
+                                                <p><span class="interfaceStyle">this</span>.<span class="moduleStyle">store</span>.<span class="decoratorStyle">dispatch</span>&#40;</p>
+                                                <p><span class="interfaceStyle codeIndent">new</span><span class="folderStyle">productActions.InitializeCurrentProduct</span>&#40;<span class="moduleStyle"></span>&#41;&#41;;</p>
+                                                <p>&#125;</p>
+                                                <br>
+
+                                                <p><span class="decoratorStyle">productSelected</span>&#40;<span class="moduleStyle">product</span>: <span class="folderStyle">Product</span>&#41;: <span class="folderStyle">void </span> &#123;</p>
+                                                  <p><span class="interfaceStyle">this</span>.<span class="moduleStyle">store</span>.<span class="decoratorStyle">dispatch</span>&#40;</p>
+                                                  <p><span class="interfaceStyle codeIndent">new</span><span class="folderStyle">productActions.SetCurrentProduct</span>&#40;<span class="moduleStyle">product</span>&#41;&#41;;</p>
+                                                  <p>&#125;</p>
+                                          </code>
+                                      </pre>
+        <div class="codefileInfo">
+          <span class="folderStyle codeIndent">app</span> &gt;
+          <span class="folderStyle">product</span> &gt;
+          <span class="folderStyle">product-shell</span>&gt;
+          <span class="filename">product-shell.component.ts</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+

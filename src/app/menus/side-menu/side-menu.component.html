@@ -1,0 +1,13 @@
+
+<div class="sideMenuContainer">
+    <div class="nav-bar" id="nav-bar">
+        <mat-nav-list class="nav-list"*ngIf="chapterList">
+            <mat-list-item class="normal">NGRX: The Basics</mat-list-item>
+
+  
+    <mat-list-item *ngFor="let chapter of chapterList" class="normalLink" routerLink="{{chapter.address}}" routerLinkActive="currentLink" >{{chapter.heading}}</mat-list-item>
+         
+          
+        </mat-nav-list>
+    </div>
+</div>

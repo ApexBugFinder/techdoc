@@ -1,0 +1,144 @@
+<section id="effects" class="infoChapter">
+  <div class="sectionContainer">
+
+    <div class="chapterContent">
+
+      <h4>What are NgRx Effects?</h4>
+
+      <p>As the reducer and actions are considered a pure function, they lack the ability to call out to an
+        external source for data. Effects are the
+        solution to this problem. When an action is called that requires access to an outside data source it will
+        trigger an effect. The effect will
+        make the subsequent call to the server, retrieve or update data and return and attach any necessary data
+        to an action. This action will then
+        follow the standard protocol where it is picked up by the reducer and the data if any is processed into
+        the immutable state.</p>
+
+
+      <img src="https://firebasestorage.googleapis.com/v0/b/techdocang.appspot.com/o/site-videos%2Fngrx-effectsGIF.gif?alt=media&token=29e1f98b-7958-4832-a15b-5aa899426158" alt="" class="ngRxEffectGif">
+
+      <h4>Getting Started w/ Effects</h4>
+
+      <p>To use NgRx Effects your application will require you to install the NgRx Effects package via npm or
+        yarn. In this example I prefer to use yarn.</p>
+
+      <div class="terminalCode">
+        <pre>
+
+
+                      <kbd><span class="decoratorStyle">&gt; </span>npm install &#64;ngrx/effects --save</kbd>
+
+
+                  </pre>
+      </div>
+
+
+      <p>To complete the initialization of the NgRx Effects module you need to import it into the appModule</p>
+
+      <div class="codeBlock generalCodeBlock effectsCodeBlock1">
+
+        <pre id="codeInputBlock" class="codeInputBlock">
+                                      <code class="coderBlock">
+
+                                        <p>...</p>
+                                        <p> <span class="importStyle">import</span> &#123; <span class="moduleStyle">EffectsModule</span> &#125; from <span class="fileStyle">&#39;&#64;ngrx/effects&#39;</span>&#59;  </p>
+
+                                         <br>
+                                        <br>
+                                        <p><span class="decoratorStyle">&#64;NgModule</span>&#40;&#123;</p>
+                                            <p>imports: [</p>
+                                                <div class="codeIndent">
+                                                    <p>...</p>
+                                                    <p><span class="moduleStyle">EffectsModule</span>.<span class="decoratorStyle">forRoot</span>&#40;[ ]&#41;,</p>
+
+                                                </div>
+
+                                            ]
+                                        <p>&#125;&#41;&#59;</p>
+
+
+                                      </code>
+                                  </pre>
+        <div class="codefileInfo">
+          <span class="folderStyle codeIndent">app</span> &gt;
+          <span class="filename">app.module.ts</span>
+        </div>
+
+
+    </div>
+
+      <h4>Implementation</h4>
+
+      <p>When you create an NgRx effects they are located in an effects file in their respective feature state
+        folder.
+        The file follows the standard naming convention with the feature in the title... &#39;feature&#39;.effects.ts. In
+        this example we are using the product
+        feature module and adding an effect that will get an array of products from the server. It is important to
+        note that at the top of the file we
+        import Actions, Effect, and ofType from @ngrx/effects. An effect relies on rxjs operators like mergeMap,
+        map, and catchError to manage
+        the return data from the observables. An Effect also operates similar to a service as it uses the
+        @Injectable() decorator.
+        After attempting to fetch the data the effect will map and pipe the results and either dispatch a
+        LoadSuccess() Action or a LoadFail() Action.
+        The LoadSuccess() Action if successful will carry the resultant array of products as the payload. The
+        LoadFail() Action will carry a string
+        detailing the error.</p>
+
+        <div class="codeBlock generalCodeBlock effectsCodeBlock2">
+
+          <pre id="codeInputBlock" class="codeInputBlock">
+                                        <code class="coderBlock">
+
+
+                                          <p> <span class="importStyle">import</span> &#123; <span class="moduleStyle">Injectable</span> &#125; from <span class="fileStyle">&#39;&#64;angular/core&#39;</span>&#59;  </p>
+                                          <p> <span class="importStyle">import</span> &#123; <span class="moduleStyle">Actions, Effect, ofType</span> &#125; from <span class="fileStyle">&#39;&#64;ngrx/effects&#39;</span>&#59;</p>
+                                          <p> <span class="importStyle">import</span> &#123; <span class="moduleStyle">ProductService</span> &#125; from <span class="fileStyle">&#39;../product.service&#39;</span>&#59;  </p>
+                                          <p> <span class="importStyle">import </span><span class="moduleStyle">* </span><span class="importStyle">as </span><span class="moduleStyle">productActions </span><span class="importStyle">from </span><span class="fileStyle">&#39;../state/product.actions&#39;</span>&#59;  </p>
+                                           <p><span class="importStyle">import </span>&#123;</p>
+                                            <p><span class="codeIndent"></span><span class="moduleStyle">mergeMap, map, catchError</span></p>
+                                            <p>&#125;<span class="importStyle"> from </span><span class="fileStyle">&#39;rxjs/operators&#39;</span>;</p>
+                                            <p><span class="importStyle">import</span> &#123; <span class="moduleStyle">Product </span>&#125; <span class="importStyle">from </span><span class="fileStyle">&#39;../product&#39;</span>&#59;</p>
+                                            <p><span class="importStyle">import</span> &#123; <span class="moduleStyle">of </span>&#125; <span class="importStyle">from </span><span class="fileStyle">&#39;rxjs&#39;</span>&#59;</p>
+                                            <br><br>
+
+
+                                          <p><span class="decoratorStyle">&#64;Injectable()</span></p>
+                                              <p><span class="importStyle">export </span><span class="interfaceStyle">class </span><span class="folderStyle">ProductEffects</span> &#123;</p>
+                                                <p><span class="codeIndent"></span><span class="interfaceStyle">constructor </span>&#40;</p>
+                                                <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="interfaceStyle">private </span><span class="moduleStyle">action$</span>: <span class="folderStyle">Actions</span>,</p>
+                                                <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="interfaceStyle">private </span><span class="moduleStyle">productService</span>: <span class="folderStyle">ProductService</span>&#41; &#123; &#125;</p>
+
+                                                <br><br>
+                                                <p><span class="decoratorStyle">&#64;Effect()</span></p>
+                                                <p><span class="moduleStyle">LoadProducts$ </span>= <span class="interfaceStyle">this</span>.<span class="moduleStyle">actions$</span>.<span class="decoratorStyle">pipe</span>(</p>
+                                                <p><span class="codeIndent"></span><span class="decoratorStyle">ofType</span>(<span class="moduleStyle">productActions.ProductActionTypes.Load</span>),</p>
+                                                <p><span class="codeIndent"></span><span class="decoratorStyle">mergeMap</span>( (<span class="interfaceStyle">action</span>: <span class="folderStyle">productActions.Load</span>) =></p>
+                                                <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="interfaceStyle">this</span>.<span class="moduleStyle">productService</span>.<span class="decoratorStyle">getProducts</span>()</p>
+                                                <p><span class="codeIndent"></span><span class="codeIndent"></span>.<span class="decoratorStyle">pipe</span>(</p>
+                                                <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="codeIndent"></span><span class="decoratorStyle">map</span>((<span class="moduleStyle">products</span>: <span class="folderStyle">Product</span> [ ]) =></p>
+                                                <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="codeIndent"></span>(<span class="interfaceStyle">new </span><span class="folderStyle">productActions.LoadSuccess</span>(<span class="moduleStyle">products</span>)))</p>
+                                                <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="codeIndent"></span><span class="decoratorStyle">catchError</span>(<span class="moduleStyle">err</span> => <span class="decoratorStyle">of </span><span class="interfaceStyle">new </span><span class="folderStyle">productActions.LoadFail</span>(<span class="moduleStyle">err</span>)))</p>
+                                                <p><span class="codeIndent"></span><span class="codeIndent">)</span></p>
+                                                <p><span class="codeIndent">)</span></p>
+                                                <p>);</p>
+                                                <p>&#125;</p>
+
+                                        </code>
+                                    </pre>
+          <div class="codefileInfo">
+            <span class="folderStyle codeIndent">app</span> &gt;
+            <span class="folderStyle">users</span> &gt;
+            <span class="filename">user.module.ts</span>
+          </div>
+
+
+      </div>
+
+      <p>Regardless of whether the Effect is successful The Reducer is waiting patiently to process the resultant
+        actions dispatched from the effect.</p>
+
+
+    </div>
+  </div>
+</section>

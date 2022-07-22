@@ -1,0 +1,60 @@
+<section id="strongTyping" class="infoChapter">
+  <div class="sectionContainer">
+
+    <div class="chapterContent">
+      <p>
+        One of the great advantages of working with Typescript is it's
+        ability to make your JavaScript Type safe. This adds an extra
+        layer of protection as your data passed and saved to your
+        client-side database (store) is checked for type compatibility.
+        When you first define the state properties they will have the
+        initial value of undefined, so we want to also provide the
+        initial values. This definition of your slice is located in your
+        feature state's reducer.ts located in the state folder of your
+        feature. Declaration of the slice includes the definition of the
+        data type
+      </p>
+
+      <div class="stronglyTypedGrid1">
+        <div class="stronglyTypedGrid1Pic"><img src="https://firebasestorage.googleapis.com/v0/b/techdocang.appspot.com/o/site-SVGs%2FstronglyTypedSVG.svg?alt=media&token=5ed46e35-c889-44f3-ab7e-578699260378" alt="" class=""
+            id="strongtypedPic1"></div>
+        <div class="codeBlock generalCodeBlock stronglyTypedGrid1CodeBlock1">
+          <pre id="codeInputBlock" class="codeInputBlock">
+                                        <code class="coderBlock">
+
+                                               <p><span class="importStyle">export </span> <span class="interfaceStyle">interface</span>
+                                                <span class="folderStyle">State</span>
+                                                <span class="importStyle">extends </span>
+                                                <span class="folderStyle">fromRoot.State</span> &#123;</p>
+                                                 <p></p>
+
+                                                   <p><span class="moduleStyle codeIndent">products</span>:<span class="folderStyle">ProductState</span></p>
+
+                                                 <p>&#125;</p>
+                                                 <br>
+                                                 <p><span class="importStyle"></span> <span class="interfaceStyle">interface </span><span class="folderStyle">ProductState</span> &#61; &#123;</p>
+                                                 <p><span class="moduleStyle codeIndent">showProductCode</span>: <span class="booleanStyle">boolean</span></p>
+                                                 <p><span class="moduleStyle codeIndent">currentProduct</span>: <span class="folderStyle">Product</span>;</p>
+                                                 <p><span class="moduleStyle codeIndent">products</span>: <span class="folderStyle">Product[]</span>;</p>
+                                                 <p><span class="moduleStyle codeIndent">error</span>: <span class="errorStyle">string</span>;</p>
+                                                 <p>&#123;</p>
+                                        </code>
+                                    </pre>
+          <div class="codefileInfo">
+            <span class="folderStyle codeIndent">app</span> &gt;
+            <span class="folderStyle">products</span> &gt;
+            <span class="folderStyle">state</span> &gt;
+            <span class="filename">product.reducer.ts</span>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <p>AppState operates similarly to lazy loading with the router. As you only load what state is critical for
+        the app to function
+        and then state slice corresponding to the feature is added and loaded when the feature is loaded.</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,81 @@
+<section id="devtools" class="infoChapter">
+  <div class="sectionContainer">
+
+    <div class="chapterContent">
+
+      <p>Now that you have your NgRx in full bloom, let us take a look at what Redux in Action with Redux DevTools
+      </p>
+      <p>Let&#39;s install Redux DevTools in three easy steps so we can take a look under the hood</p>
+
+
+
+      <ul class="chapterContent-ul-numbered">
+        <li class="">Install browser extension</li>
+        <ul class="chapterContent-ul2">
+          <li class="chapterContent-li">Chrome extension: &#39;redux devtools</li>
+          <li class="chapterContent-li">Firefox add-ons: &#39;redux devtools&#39;</li>
+        </ul>
+        <li class="">Install @ngrx/store-devtools</li>
+        <div class="terminalCode">
+          <pre>
+
+
+                      <kbd><span class="decoratorStyle"> &gt; </span>npm install @ngrx/effects --save</kbd>
+
+
+                  </pre>
+        </div>
+
+        <li>Initialize @ngrx/store-DevTools module</li>
+      </ul>
+      <div class="codeBlock generalCodeBlock devToolsCodeBlock1">
+
+          <pre id="codeInputBlock" class="codeInputBlock">
+                                        <code class="coderBlock">
+
+                                          <p>...</p>
+                                          <p> <span class="importStyle">import</span> &#123; <span class="moduleStyle">StoreDevToolsModule</span> &#125; from <span class="fileStyle">&#39;&#64;ngrx/store-devtools&#39;</span>;  </p>
+
+
+                                          <br>
+
+                                          <p><span class="decoratorStyle">&#64;NgModule</span>&#40;&#123;</p>
+                                              <p>imports: [</p>
+                                                  <div class="codeIndent">
+                                                      <p>...</p>
+                                                      <p><span class="moduleStyle codeIndent">StoreDevToolsModule</span>.<span class="decoratorStyle">instrument</span>&#40;&#123;</p>
+                                                        <p><span class="codeIndent"></span><span class="moduleStyle codeIndent">name</span>: <span class="fileStyle">&#39;App Demo DevTools&#39;</span>,</p>
+                                                        <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="moduleStyle">maxAge</span>: <span class="decoratorStyle">25</span>,</p>
+                                                        <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="moduleStyle">logOnly</span>: <span class="moduleStyle">environment</span><span class="span moduleStyle">production</span></p>
+                                                        <p><span class="codeIndent">&#125;&#41;,</span></p>
+                                                        <p class="codeIndent">]</p>
+                                                        <p>&#125;&#41;</p>
+                                                  </div>
+
+                                              ]
+                                          <p>&#125;&#41;;</p>
+
+
+                                        </code>
+                                    </pre>
+          <div class="codefileInfo">
+            <span class="folderStyle codeIndent">app</span> &gt;
+            <span class="filename">app.module.ts</span>
+          </div>
+
+
+      </div>
+      <p>You can now take advantage of some of the advantages inherit to NgRx through the your Web Developer Tools
+        like:</p>
+
+      <ul class="chapterContent-ul">
+        <li class="chapterContent-li">You can now get a visualization of your state tree</li>
+        <li class="chapterContent-li">Have a history of your state changes</li>
+        <li class="chapterContent-li">Debug by undoing and redoing state changes</li>
+        <li class="chapterContent-li">Advanced logging</li>
+      </ul>
+
+    </div>
+  </div>
+</section>
+

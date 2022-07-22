@@ -1,0 +1,186 @@
+<section id="featureStateManagement" class="infoChapter">
+  <div class="sectionContainer">
+
+    <div class="chapterContent">
+      <p>
+        Your store is a JavaScript object that is destroyed when the
+        application is restarted. It operates as a client side database
+        that holds the state of the application. Each bit of state is
+        defined by a property. This state will grow as the application
+        grows and become unmanageable. But when married to the logical
+        angular feature module scheme the state can grow along with the
+        application and maintain functionality. Therefore a portion of
+        the state that corresponds with a feature will be considered a
+        slice and named according to its respective slice as in
+        ‘products slice’ or ‘user slice’. Store operates like an
+        in-memory database and is destroyed when the browser is
+        refreshed
+      </p>
+
+      <img id="featureStateTree" src="https://firebasestorage.googleapis.com/v0/b/techdocang.appspot.com/o/site-SVGs%2FTree.svg?alt=media&token=0610e684-b7cc-4fb6-a1d9-90d3bd08408a" alt="feature state tree pic" />
+
+      <p>
+        The application will function as a tree of features. The
+        branches of the tree represent independent features. Each
+        feature will implement its own Redux pattern, complete with its
+        own store, reducer, actions, selectors and effects. The features
+        manage their own slice of the store, which helps simplify
+        management of large applications that's complexity would
+        otherwise be unmanageable.
+      </p>
+
+      <div class="featureStateGrid1">
+        <div class="featureStateGrid1PicBlock">
+          <img src="https://firebasestorage.googleapis.com/v0/b/techdocang.appspot.com/o/site-images%2FfeatureStateManagement.png?alt=media&token=0c190cfc-2ea4-4d30-b9c1-cbc75ebdd3e2"
+            alt="Shows the multiple modules feeding the app state root" id="featureStatGridPic2" />
+        </div>
+
+        <div class="featureStateGrid1CodeBlock">
+
+          <div class="featureCodeUsersBlock">
+            <p class="featureSliceTitle"><span class="empFeature">Feature</span>: User</p>
+            <div class="codeBlock">
+              <pre class="codeInputBlock">
+
+                                    <code class="coderBlock">
+                                      <p>&#123;</p>
+                                        <p class="propertyStyle">isAuthenticated&#58; <span class="booleanStyle">true</span>,</p>
+                                        <p class="propertyStyle">userId&#58; <span class="fileStyle">`kdkdjggjj`</span>,</p>
+                                        <p class="propertyStyle">userName&#58; <span class="fileStyle">`BobbyBooShay3000`</span>,</p>
+                                        <p class="propertyStyle">userProfilePic&#58; <span class="fileStyle">`...redux-logo.png`</span>,</p>
+                                        <p class="propertyStyle">loginExp&#58; <span class="decoratorStyle">4444444</span></p>
+                                        <p>&#125;</p>
+
+
+                                    </code>
+                      </pre>
+
+
+            </div>
+          </div>
+
+          <div class="featureCodeProductsBlock">
+            <p class="featureSliceTitle"><span class="empFeature">Feature</span>: Product</p>
+            <div class="codeBlock">
+              <pre id="codeInputBlock" class="codeInputBlock">
+                                             <code class="coderBlock">
+
+                                              <ul class="featureSlice">
+                                                <li>&#123;</li>
+                                                <li><p class="propertyStyle">showProductCode: <span class="booleanStyle">true</span>,</p></li>
+                                                <li> <p class="propertyStyle">currentProduct: <span class="fileStyle">`kdkdjggjj`</span>,</p></li>
+                                                <li><p class="propertyStyle">products: [</p></li>
+                                                    <ul class="featureSlice codeIndent">
+                                                      <li class="propertyStyle">&#123;</li>
+                                                      <li class="codeIndent"><p class="propertyStyle">productName: <span class="fileStyle">`Green Tea</span>,</p> </li>
+                                                      <li class="codeIndent"><p class="propertyStyle">productCode: <span class="decoratorStyle">1</span>,</p></li>
+                                                      <li class="codeIndent"><p class="propertyStyle ">description: <span class="fileStyle">`Tasty and Green`</span>,</p></li>
+                                                      <li class="propertyStyle">&#125;</li>
+                                                    </ul>
+
+                                                <li class="propertyStyle">]</li>
+
+                                              </ul>
+
+
+
+                                             </code>
+                                         </pre>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        This redux pattern will work hand in hand with the feature's
+        Components and Views. In the figure above you can see product
+        information and user information is managed in their respective
+        feature module. For the application to recognize these branches
+        of the state they must be imported into their feature modules.
+        The definition of feature state resides in the feature's reducer
+        file and they are imported into their feature modules. And the
+        each module feature state subsequently imported into the
+        AppState. As seen below...
+      </p>
+
+      <div class="featureStateGrid2">
+        <div class="featureStateGrid2Pic">
+          <img src="https://firebasestorage.googleapis.com/v0/b/techdocang.appspot.com/o/site-SVGs%2FfeatureStateSVG.svg?alt=media&token=b16ab6d6-9666-4e38-83df-dc7645e8105f" alt="feature state composition" id="featureStatePic3" />
+        </div>
+        <div class="featureStateGrid2CodeBlock">
+          <div class="featureStateGrid2CodeBlock1">
+            <pre id="codeInputBlock" class="codeInputBlock">
+                                          <code class="coderBlock">
+
+
+                                            <p> <span class="importStyle">import</span> &#123; <span class="moduleStyle">StoreModule</span> &#125; from <span class="fileStyle">&#39;&#64;ngrx/store&#39;</span>&#59;  </p>
+                                            <p> <span class="importStyle">import</span> &#123; <span class="moduleStyle">reducer</span> &#125; from <span class="fileStyle">&#39;./state/user.reducer&#39;</span>&#59;  </p>
+                                              <br>
+
+
+                                            <p><span class="decoratorStyle">&#64;NgModule</span>&#40;&#123;</p>
+                                                <p>imports: [</p>
+                                                    <div class="codeIndent">
+                                                        <p>...</p>
+                                                        <p><span class="moduleStyle">StoreModule</span>.<span class="decoratorStyle">forFeature</span>
+                                                          &#40;<span class="fileStyle">'users'</span>, <span class="moduleStyle">reducer</span>&#41;,</p>
+
+                                                    </div>
+
+                                                ]
+                                            <p>&#125;&#41;;</p>
+
+
+                                          </code>
+                                      </pre>
+            <div class="codefileInfo">
+
+                <span class="folderStyle codeIndent">app</span> &gt;
+                <span class="folderStyle">users</span> &gt;
+                <span class="filename">user.module.ts</span>
+
+
+            </div>
+          </div>
+
+          <div class="codeBlock featureStateGrid2CodeBlock2">
+            <pre id="codeInputBlock" class="codeInputBlock">
+                                          <code class="coderBlock">
+
+
+
+
+
+                                            <p> <span class="importStyle">import</span> &#123; <span class="moduleStyle">StoreModule</span> &#125; from <span class="fileStyle">&#39;&#64;ngrx/store&#39;</span>&#59;  </p>
+                                            <p> <span class="importStyle">import</span> &#123; <span class="moduleStyle">reducer</span> &#125; from <span class="fileStyle">&#39;./state/product.reducer&#39;</span>&#59;  </p>
+
+                                            <br>
+                                            <p><span class="decoratorStyle">&#64;NgModule</span>&#40;&#123;</p>
+                                                <p>imports: [</p>
+                                                    <div class="codeIndent">
+                                                        <p>...</p>
+                                                        <p><span class="moduleStyle">StoreModule</span>.<span class="decoratorStyle">forFeature</span>
+                                                          &#40;<span class="fileStyle">&#39;products&#39;</span>, <span class="moduleStyle">reducer</span>&#41;,</p>
+
+                                                    </div>
+
+                                                ]
+                                            <p>&#125;&#41;&#59;</p>
+
+
+                                          </code>
+                                      </pre>
+            <div class="codefileInfo">
+              <span class="folderStyle codeIndent">app</span> &gt;
+              <span class="folderStyle">product</span> &gt;
+              <span class="filename">product.module.ts</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

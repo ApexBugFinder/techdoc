@@ -1,0 +1,58 @@
+<section id="initializeState" class="infoChapter">
+  <div class="sectionContainer">
+
+    <div class="chapterContent">
+      <p>
+        Now that you have NgRx running and we need to add initialize our
+        store with some data. Create app.state.ts file in a
+        <span class="folderInTextStyle">state</span> folder at the root
+        of your project. In there you will initialize your State. Your
+        folders should match the figure below:
+      </p>
+
+      <div class="initializeStateGridBlock">
+        <div class="picBlock">
+          <img class="appStateTreeFig" id="appStateTreeFig" src="https://firebasestorage.googleapis.com/v0/b/techdocang.appspot.com/o/site-images%2FappStateTree.jpg?alt=media&token=f81b6504-b990-4019-a3a7-8d4bae322be1"
+            alt="Figure of App State Tree" />
+        </div>
+        <div class="rightSideBlock">
+
+            <div class="codeBlock initCodeBlock1">
+              <pre id="codeInputBlock" class="codeInputBlock">
+
+
+                                             <code class="coderBlock">
+
+
+                                                    <p><span class="importStyle">export</span> interface <span class="folderStyle">State</span> &#123;</p>
+                                                      <br><br>
+                                                      <p>&#125;</p>
+
+
+
+
+
+
+                                             </code>
+                                         </pre>
+
+              <div class="codefileInfo">
+                <span class="folderStyle">app</span> &gt;
+                <span class="folderStyle">state</span> &gt;
+                <span class="filename">app.state.ts</span>
+              </div>
+            </div>
+
+          <div class="initText">
+            <p>
+              When the StoreModule initializes the store it will
+              implement the content in this folder at the root This is
+              the content that is loaded that will operate across all
+              modules and features.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

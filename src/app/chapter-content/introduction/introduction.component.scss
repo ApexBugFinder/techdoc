@@ -1,0 +1,112 @@
+#introduction .chapterContent ul {
+    width: 80%;
+    margin: auto;
+}
+
+
+.ngrxEquationContainer {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr 3fr 1fr 3fr;
+    grid-template-rows: 90%;
+    grid-template-areas: "ngrx oper8orEq angular oper8or redux";
+    margin: auto;
+}
+.ngrxDiv {
+    grid-area: ngrx;
+
+    align-self:flex-start;
+    margin-right: 40px;
+
+}
+.equationContent {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    margin-top: 0px;
+    
+}
+.equationContentContainer1 {
+    display: flex;
+    flex-direction: row;
+    vertical-align: top;
+    justify-self: flex-start;
+}
+.equationContentContainer2 {
+    display: flex;
+    flex-direction: row;
+}
+.ngrxEquationLogo {
+    width: 60px;
+    margin-left: 30px;
+    display: inline-block;
+    
+}
+.equationContent p {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 20px;
+    margin-left: 60px;
+    justify-self: baseline;
+}
+
+.equationContent .nextToLogo {
+    margin-left: 15px;
+}
+.equationContent .equationContentContainer2 ul li {
+    margin-left: 80px;
+    width: 80px;
+}
+.equationContent ul li{
+    list-style: none;
+    font-size: 14px;
+}
+.angularDiv {
+    grid-area: angular;
+    justify-self:flex-start;
+    align-self: flex-start;
+
+}
+.oper8orDiv {
+    grid-area: oper8or;
+    font-size: 40px;
+    margin: auto 20px;
+}
+.oper8orDivEq {
+    grid-area: oper8orEq;
+    font-size: 40px;
+
+}
+.reduxDiv {
+    grid-area: redux;
+}
+
+.quote {
+    font-style: italic;
+    margin: auto;
+
+}
+.quoteAuthor {
+    margin: auto;
+    margin-left: 60%;
+}
+
+@media (max-width: 1153px) {
+.listIndent {
+    padding-left: 20px;
+}
+.listIndent li {
+    margin-left: 20px;
+}
+.equationContentContainer2 ul li {
+    margin-left: 0px;
+    width: 80px;
+}
+.equationContentContainer2 ul {
+    padding-left: 0px;
+    margin-left: 40px;
+}
+.ngrxEquationLogo {
+    margin-left: 0px;
+}
+}

@@ -1,0 +1,188 @@
+<section id="actions" class="infoChapter">
+  <div class="sectionContainer">
+
+    <div class="chapterContent">
+      <h4>Overview</h4>
+
+      <p>Actions parcel up information that is used to add to or modify the stored data in our store. This app
+        state data is
+        created by user events in the views. The action operates as a discreet mechanism to transport changes in
+        app state data
+        from the components to be the reducer. Once the information is in the reducer it is processed through a
+        switch
+        statement and modifications to the store will be applied. The NgRx Action is not just the critical path in
+        change control
+        of the app state but the only path to state manipulation. This insures the state integrity across the
+        entire application.</p>
+
+      <h4>How and when do I create Actions?</h4>
+
+      <p>Actions are created based upon how the store's data will be modified. Actions are declared along side the
+        state
+        properties because they define how the values of the state properties can be changed. Actions are
+        generally defined in
+        their own file and exported so that they can be accessed from the components and anywhere the feature
+        module is
+        imported.</p>
+
+      <p>An Action is a simple JavaScript object consisting of two properties, the type and the payload.</p>
+
+      <p>Type: is a unique string describing what the action does, what information the action is responsible for
+        manipulating
+        Payload: is the object that carries the change of state.</p>
+
+      <p>This is an example of a basic action:</p>
+
+      <div class="actionsCodeBlock1">
+
+        <div class="codeBlock">
+          <pre class="codeInputBlock">
+
+                                          <code class="coderBlock">
+                                            <p>&#123;</p>
+                                              <div class="codeIndent">
+                                                <p class="propertyStyle">type: <span class="fileStyle">'LOGIN'</span>,</p>
+                                                <p class="propertyStyle">payload:  &#123;</p>
+                                                <p class="propertyStyle codeIndent"><span class="moduleStyle codeIndent">userName: </span><span class="fileStyle">`BobbyBooShay3000`</span>,</p>
+                                                <p class="propertyStyle codeIndent"><span class="moduleStyle codeIndent">password: </span><span class="fileStyle">`secret`</span>,</p>
+
+                                              </div>
+
+                                              <p>&#123;</p>
+
+
+                                          </code>
+                            </pre>
+
+
+        </div>
+      </div>
+      <p>Actions are recognized by the reducer via the type property in a switch statement. Hence the requirement
+        for them to be unique. It is best
+        practice to define your type properties via enum, so that you define them once and you can bypass any
+        problems with typos that can occur. This
+        enum listing will function as an index and action definition listing (or what i like to refer to as an
+        action dictionary). Declaration type via enum
+        immediately transforms this fragile process into a strongly typed dependable process. </p>
+
+      <div class="codeBlock generalCodeBlock actionsCodeBlock2">
+        <pre id="codeInputBlock" class="codeInputBlock">
+                          <code class="coderBlock" ng-non-bindable>
+                             <p><span class="importStyle">export </span><span class="interfaceStyle">enum </span><span class="folderStyle">ProductActionTypes</span> &#123;</p>
+                              <p><span class="moduleStyle codeIndent">ToggleProduceCode</span> &#61; <span class="fileStyle">`[Product] Toggle Product Code`</span>,</p>
+                              <p><span class="moduleStyle codeIndent">SetCurrentProduct </span> &#61; <span class="fileStyle">`[Product] Set Current Product`</span>,</p>
+                              <p><span class="moduleStyle codeIndent">ClearCurrentProduct </span> &#61; <span class="fileStyle">`[Product] Clear Current Product`</span></p>
+                              <p>&#123;</p>
+
+
+
+
+                        </code>
+                                                  </pre>
+        <div class="codefileInfo">
+          <span class="folderStyle codeIndent">app</span> &gt;
+          <span class="folderStyle">products</span> &gt;
+          <span class="folderStyle">state</span> &gt;
+          <span class="filename">product.actions.ts</span>
+        </div>
+
+      </div>
+
+      <p>As we are building Typescript we can protect our State but strongly typing our payload to add another
+        layer of protection to the integrity of our
+        state data. Allowing for an error to be thrown if the data being passed does not match the defined type
+        for that payload.</p>
+
+
+      <img src="https://firebasestorage.googleapis.com/v0/b/techdocang.appspot.com/o/site-images%2FproductActions.png?alt=media&token=4299e05c-d0ad-45ab-986d-b83031bfc0a3" alt="" class="actionsImg1">
+
+
+      <div class="codeBlock generalCodeBlock actionsCodeBlock3">
+        <pre id="codeInputBlock" class="codeInputBlock">
+                                                          <code class="coderBlock" ngNonBindable>
+
+                                                                 <p><span class="importStyle">export </span>
+                                                                    <span class="interfaceStyle">class </span>
+                                                                    <span class="folderStyle">ToggleProductCode </span>
+                                                                    <span class="interfaceStyle">implements </span>
+                                                                    <span class="folderStyle">Action </span> &#123;</p>
+                                                                  <p><span class="interfaceStyle codeIndent">readonly </span>
+                                                                     <span class="moduleStyle">type = ProductActionTypes.ToggleProductCode</span>;</p>
+                                                                  <p>
+                                                                    <span class="codeIndent">constructor</span>&#40;
+
+                                                                      <span class="interfaceStyle">public </span>
+                                                                      <span class="moduleStyle">payload: </span>
+                                                                      <span class="folderStyle">boolean</span>&#41; &#123;</p>
+                                                                  <p>&#123;</p>
+                                                                    <br>
+
+                                                                  <p><span class="importStyle">export </span>
+                                                                    <span class="interfaceStyle">class </span>
+                                                                    <span class="folderStyle">SetCurrentProduct </span>
+                                                                    <span class="interfaceStyle">implements </span>
+                                                                    <span class="folderStyle">Action </span> &#123;</p>
+                                                                  <p><span class="interfaceStyle codeIndent">readonly </span>
+                                                                     <span class="moduleStyle">type = ProductActionTypes.SetCurrentProduct</span>;</p>
+                                                                  <p>
+                                                                    <span class="codeIndent">constructor</span>&#40;
+
+                                                                      <span class="interfaceStyle">public </span>
+                                                                      <span class="moduleStyle">payload: </span>
+                                                                      <span class="folderStyle">Product</span>&#41; &#123;</p>
+                                                                  <p>&#123;</p>
+                                                                  <br>
+
+
+                                                                  <p><span class="importStyle">export </span>
+                                                                    <span class="interfaceStyle">class </span>
+                                                                    <span class="folderStyle">ClearCurrentProduct </span>
+                                                                    <span class="interfaceStyle">implements </span>
+                                                                    <span class="folderStyle">Action </span> &#123;</p>
+                                                                  <p><span class="interfaceStyle codeIndent">readonly </span>
+                                                                     <span class="moduleStyle">type = ProductActionTypes.SetCurrentProduct</span>;</p>
+                                                                  <p>&#123;</p>
+
+                                                          </code>
+                                                      </pre>
+        <div class="codefileInfo">
+          <span class="folderStyle codeIndent">app</span> >
+          <span class="folderStyle">products</span> >
+          <span class="folderStyle">state</span> >
+          <span class="filename">product.actions.ts</span>
+        </div>
+
+      </div>
+
+      <p>The enums definition is also used in the declaration of the action, so that every instantiation of the
+        action will include
+        the correct and same definition of the action. This allows the reducer to accurately identity each action
+        everytime.
+      </p>
+
+      <p>Once our Type definitions and actions have been defined we then can export them as a union type.</p>
+
+      <div class="codeBlock generalCodeBlock actionsCodeBlock4">
+        <pre id="codeInputBlock" class="codeInputBlock">
+                                                          <code class="coderBlock">
+
+                                                                 <p><span class="importStyle">export </span><span class="interfaceStyle">type </span><span class="folderStyle">ProductActions </span> = </p>
+                                                                 <p><span class="moduleStyle codeIndent">ToggleProductCode </span>= </p>
+                                                                 <p><span class="moduleStyle codeIndent">| SetCurrentProduct </span>= </p>
+                                                                 <p><span class="moduleStyle codeIndent">| ClearCurrentProduct </span></p>
+                                                                 <p>;</p>
+
+                                                          </code>
+                                                      </pre>
+        <div class="codefileInfo">
+          <span class="folderStyle codeIndent">app</span> >
+          <span class="folderStyle">products</span> >
+          <span class="folderStyle">state</span> >
+          <span class="filename">product.actions.ts</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>

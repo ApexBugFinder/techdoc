@@ -1,0 +1,149 @@
+<section id="utilizingFeatureSelectors" class="infoChapter">
+  <div class="sectionContainer">
+    <!-- <app-chapter-heading [heading]="this.myHeading"></app-chapter-heading> -->
+    <div class="chapterContent">
+      <p>Now that we have a working reducer, and actions conveying changes to the reducer, we still need to
+        coordinate these changes to all interested
+        parties across the application simultaneously by utilization of the feature selectors. The selectors are
+        programmed to listen to specific properties (a
+        slice) of the state, and when those values are updated the changes are passed to all the subscribed
+        parties across the application. Please see
+        Creating Feature Selector section for more details on defining a feature selector.</p>
+
+      <p>In the component we import the Store and select operators from the @ngrx/store, and all the exports in
+        the reducer.ts file from the feature module
+        concerning the portion of the slice you are interested in. By importing the exports in the feature module
+        reducer.ts file you will gain access to the
+        selectors.</p>
+      <div class="codeBlock generalCodeBlock utilizingFeatureSelectorsCodeBlock1">
+      
+        <pre id="codeInputBlock" class="codeInputBlock">
+                                                  <code class="coderBlock">
+                                                     <p ng-non-bindable><span class="importStyle">import </span>&#123;<span class="moduleStyle">Store, select </span>&#125; <span class="importStyle">from </span><span class="fileStyle">&#39;@ngrx/store&#39;</span>;</p>
+                                                     <p><span class="importStyle">import </span><span class="moduleStyle">* as fromProduct </span><span class="importStyle">from </span><span class="fileStyle">&#39;.../state/product.reducer&#39;</span>;</p>
+
+                                                  </code>
+                                              </pre>
+        <div class="codefileInfo">
+          <span class="folderStyle codeIndent">app</span> &gt;
+          <span class="folderStyle">products</span> &gt;
+          <span class="folderStyle">product-list</span> &gt;
+          <span class="filename">product-list.component.ts</span>
+        </div>
+
+      </div>
+
+      <p>Declaration of the necessary local variables is needed to handle the subscription to the selectors. The
+        selectors are actually Observables so in some
+        cases you can declare just an Observable or strongly typed Observable &lt;&gt;. In the case when you need to
+          process the value in the component before
+          exposing it to the user, you will declare a strongly typed <span class="folderStyle">Observable</span>
+          &lt;<span class="moduleStyle">TYPE</span>&gt; and a
+            correpsonding variable of that type to access the data
+            (SelectorData: TYPE) that is piped in from the subscription.</p>
+      <div class="codeBlock generalCodeBlock utilizingFeatureSelectorsCodeBlock2">
+     
+        <pre id="codeInputBlock" class="codeInputBlock">
+                                                      <code class="coderBlock" >
+                                                          <p ngNonBindable><span class="decoratorStyle">@Component</span> &#40; &#123;</p>
+                                                       
+                                                       
+                                                          <p><span class="moduleStyle">selector</span>: <span class="fileStyle">`pm-product-list`</span>,</p>
+                                                          <p><span class="moduleStyle">templateUrl</span>: <span class="fileStyle">&#39;./product-list.component.html&#39;</span>,</p>
+                                                          <p><span class="moduleStyle">environment.production</span>: &#91;<span class="fileStyle">&#39;./product-list.component.css&#39;</span>&#93;,</p>
+                                                             <p>&#125;&#41;</p>
+
+                                                          <br>
+
+                                                          <p><span class="importStyle">export </span><span class="moduleStyle">class </span><span class="folderStyle">ProductListComponent </span><span class="moduleStyle">implements </span><span class="decoratorStyle">OnInit </span>[</p>
+                                                          <p class=""><span class="moduleStyle codeIndent">displayCode$</span>: <span class="folderStyle">Observable</span>&lt;<span class="booleanStyle">boolean</span>&gt;;</p>
+                                                          <p class=""><span class="moduleStyle codeIndent">displayCode</span>: <span class="booleanStyle">boolean</span>;</p>
+                                                          <p class=""><span class="moduleStyle codeIndent">selectedProduct$</span>: <span class="folderStyle">Observable</span>&lt;<span class="folderStyle">Product</span>&gt;;</p>
+                                                          <p class=""><span class="moduleStyle codeIndent">selectedProduct</span>: <span class="folderStyle">Product</span>;</p>
+                                                          <p class=""><span class="moduleStyle codeIndent">products$</span>: <span class="folderStyle">Observable</span>&lt;<span class="folderStyle">Product </span>[ ]&gt;;</p>
+                                                          <p class=""><span class="moduleStyle codeIndent">products</span>: <span class="folderStyle"></span>[ ];</p>
+                                                          <p class=""><span class="moduleStyle codeIndent">errorMessage$</span>: <span class="folderStyle">Observable</span>&lt;<span class="fileStyle">string</span>&gt;;</p>
+                                                          <p class=""><span class="moduleStyle codeIndent">errorMessage</span>: <span class="fileStyle">string</span>;</p>
+                                                          <p>]</p>
+                                                      </code>
+                                                  </pre>
+        <div class="codefileInfo">
+          <span class="folderStyle codeIndent">app</span> &gt;
+          <span class="folderStyle">state</span> &gt;
+          <span class="filename">app.state.ts</span>
+        </div>
+
+      </div>
+      <p>On the initialization of the component in the ngOnInit() method you pipe into the store and pass the
+        observable pertaining to store slice a
+        local variable. These values in the store can then be exposed directly via an async pipe in the view or
+        can be subscribed to component side
+        so the data can be manipulated before it is exposed to the user.</p>
+      <div class="codeBlock generalCodeBlock utilizingFeatureSelectorsCodeBlock3">
+      
+        <pre id="codeInputBlock" class="codeInputBlock">
+                                                          <code class="coderBlock" ngNonBindable>
+
+                                                                 <p ngNonBindable><span class="decoratorStyle">ngOnInit</span>(): <span class="folderStyle">void </span> &#123;
+                                                                   </p>
+                                                                  <p><span class="interfaceStyle codeIndent">this</span>.<span class="moduleStyle" ngNonBindable>products$ </span>=
+                                                                    <span class="interfaceStyle">this</span>.<span class="moduleStyle">store</span>.<span class="decoratorStyle">pipe</span>&#40;<span class="decoratorStyle">select</span>&#40;<span class="moduleStyle">fromProduct</span>.<span class="moduleStyle">getProducts</span>&#41;&#41;;
+                                                                  </p>
+                                                                  <br>
+                                                                  <p><span class="interfaceStyle codeIndent">this</span>.<span class="moduleStyle">currentProduct$ </span>=
+                                                                    <span class="interfaceStyle">this</span>.<span class="moduleStyle">store</span>.<span class="decoratorStyle">pipe</span>&#40;<span class="decoratorStyle">select</span>&#40;<span class="moduleStyle">fromProduct</span>.<span class="moduleStyle">getCurrentProduct</span>&#41;&#41;;
+                                                                  </p>
+                                                                  <br>
+                                                                  <p><span class="interfaceStyle codeIndent">this</span>.<span class="moduleStyle">displayCode$ </span>=
+                                                                    <span class="interfaceStyle">this</span>.<span class="moduleStyle">store</span>.<span class="decoratorStyle">pipe</span>&#40;<span class="decoratorStyle">select</span>&#40;<span class="moduleStyle">fromProduct</span>.<span class="moduleStyle">getShowProductCode</span>&#41;&#41;;
+                                                                  </p>
+                                                                  <br>
+                                                                  <p><span class="interfaceStyle codeIndent">this</span>.<span class="moduleStyle">errorMessages$ </span>=
+                                                                    <span class="interfaceStyle">this</span>.<span class="moduleStyle">store</span>.<span class="decoratorStyle">pipe</span>&#40;<span class="decoratorStyle">select</span>&#40;<span class="moduleStyle">fromProduct</span>.<span class="moduleStyle">getError</span>&#41;&#41;;
+                                                                  </p>
+
+                                                                  <p ngNonBindable>&#123;</p>
+                                                          </code>
+                                                      </pre>
+        <div class="codefileInfo">
+          <span class="folderStyle codeIndent">app</span> &gt;
+          <span class="folderStyle">products</span> &gt;
+          <span class="folderStyle">product-list</span> &gt;
+          <span class="filename">product-list.component.ts</span>
+        </div>
+
+      </div>
+      <div class="codeBlock generalCodeBlock utilizingFeatureSelectorsCodeBlock4">
+     
+                <pre id="codeInputBlock" class="codeInputBlock">
+                      <code class="coderBlock" >
+
+                            <p>&lt;<span class="booleanStyle">div </span><span class="moduleStyle">class</span>&#61;<span class="fileStyle">"card-body" </span><span class="moduleStyle">*ngIf</span>=<span class="fileStyle">"products$ | async as products"</span>&gt;</p>
+                            <p><span class="codeIndent"></span>&lt;<span class="booleanStyle">div </span><span class="moduleStyle">class</span>&#61;<span class="fileStyle">"list-group"</span>&gt;</p>
+                            <p><span class="codeIndent"></span><span class="codeIndent"></span>&lt;<span class="booleanStyle">button </span><span class="moduleStyle">class</span>&#61;<span class="fileStyle">"list-group-item list-group-item-action rounded-0"</span></p>
+                            <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="codeIndent"></span><span class="moduleStyle">*ngFor</span>&#61;<span class="fileStyle">"let product of products"</span></p>
+                            <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="codeIndent"></span><span class="moduleStyle">[ngClass]</span>&#61;<span class="fileStyle" ngNonBindable>&quot;&#123;&#39;active&#39;:product?.id === selectedProduct?.id&#125;&quot;</span></p>
+                            <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="codeIndent"></span><span class="moduleStyle">(click)</span>&#61;<span class="fileStyle">"productSelected(product)"</span>&gt;</p>
+                            <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="codeIndent"></span><span class="codeIndent" ngNonBindable>&#123;&#123; product.productName &#125;&#125;</span></p>
+                            <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="codeIndent"></span>&lt;<span class="booleanStyle">ng-container </span><span class="moduleStyle" ngNonBindable>*ngIf</span>&#61;<span class="fileStyle">"displayCode"</span>&gt;</p>
+                            <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="codeIndent"></span><span class="codeIndent" ngNonBindable>&#40;&#123;&#123; product.productCode &#125;&#125;&#41;</span></p>
+                            <p><span class="codeIndent"></span><span class="codeIndent"></span><span class="codeIndent">&lt;&#47;</span> <span class="booleanStyle">ng-container</span >&gt;</p>
+                              <p><span class="codeIndent"></span><span class="codeIndent">&lt;&#47;</span> <span class="booleanStyle">button </span>&gt;</p>
+                              <p><span class="codeIndent">&lt;&#47;</span><span class="booleanStyle">div</span>&gt;</p>
+                              <p>&lt;/<span class="booleanStyle">div</span>&gt;</p>
+
+                      </code>
+                </pre>
+        <div class="codefileInfo">
+          <span class="folderStyle codeIndent">app</span> &gt;
+          <span class="folderStyle">products</span> &gt;
+          <span class="folderStyle">product-list</span> &gt;
+          <span class="filename">product-list.component.html</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+

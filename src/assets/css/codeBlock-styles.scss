@@ -1,0 +1,165 @@
+.terminalCode{
+    width: 70%;
+    margin: auto;
+}
+.terminalCode pre{
+    margin: 40px auto;
+}
+kbd {
+    font-size: 14px;
+    padding: 0px 20px;
+}
+.codeBlock {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 50px;
+    grid-template-areas: 
+    "codespot"
+    "filename"
+    ;
+    justify-content: center;
+  
+ 
+                        
+}
+pre .codeInputBlock {
+    grid-area: codespot;
+   
+    border: 1px solid #999;
+    width: 100%;
+    padding: 0;
+    font-family: sans-serif;
+    font-size: 14px;
+    background-color: black;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px;
+    color: white;
+}
+.codeInputBlock {
+    border: 2px solid var(--accent1Color);
+    
+}
+.codeInputBlock p {
+    font-family: sans-serif;
+    font-size: 14px;
+    margin: 0px;
+    color: white;
+}
+.codefileInfo {
+    grid-area: filename;
+    width: 100%;
+    color: white;
+    background-color:#333;
+    padding: 10px 20px;
+    margin: 0px;
+    font-family: sans-serif;
+    font-size: 14px;
+    border-bottom: 2px solid var(--accent1Color);
+    border-left: 2px solid var(--accent1Color);
+    border-right: 2px solid var(--accent1Color);
+}
+pre {
+    // width: 400px;
+    background-color: #000;
+    white-space: normal;
+    margin-bottom: 0px;
+ 
+
+}
+pre code {
+    display: inline-block;
+    color: black;
+    padding: 1vw 4vw;
+    
+    height: auto;
+    white-space: normal;
+}
+
+.generalCodeBlock {
+    margin: 0;
+    width: 100%;
+    min-width: 400px;
+}
+.generalCodeBlock .coderBlock {
+    width: 100%;
+    padding: auto 0vw;
+}
+.generalCodeBlock .codeInputBlock {
+    width: 100%;
+    min-width: 400px;
+}
+.generalCodeBlock .codefileInfo {
+    width: 100%;
+    padding: 1vw 0;
+    min-width: 400px;
+
+}
+
+@media (max-width: 1153px) {
+    .generalCodeBlock {
+        margin: 0;
+       
+        min-width: 400px;
+    }
+    .generalCodeBlock .coderBlock {
+        min-width: 400px;
+        padding: auto 0vw;
+    }
+    .generalCodeBlock .codeInputBlock {
+       
+        min-width: 400px;
+    }
+    .generalCodeBlock .codefileInfo {
+        
+        padding: 1vw 0;
+        min-width: 400px;
+    
+    }
+}
+
+/* TEXT COLORS and styling */
+.interfaceStyle {
+    color: #00008B;
+}
+.importStyle {
+    color: var(--primaryColor);
+}
+.moduleStyle {
+    color: lightskyblue;
+}
+.booleanStyle {
+    color: #0B6374;
+}
+
+.folderStyle {
+    color: #7AC943;
+}
+.fileStyle {
+    color: #CE9178;
+}
+.decoratorStyle {
+    color: yellow;
+}
+.errorStyle {
+    color: #FD5B58;
+}
+.codeIndent {
+    margin-left: 40px;
+}
+.propertyStyle {
+    margin-left: 40px;
+    color: lightskyblue;
+}
+.booleanStyle {
+    color: darkblue;
+}
+.filename {
+    
+    color: var(--primaryColor);
+    text-decoration: underline;
+    width: 80vmax;
+}
+kbd {
+    color: white;
+}
