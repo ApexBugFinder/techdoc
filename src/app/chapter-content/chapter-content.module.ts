@@ -18,6 +18,8 @@ import { StrongTypingComponent } from './strong-typing/strong-typing.component';
 import { UtilizingFeatureSelectorsComponent } from './utilizing-feature-selectors/utilizing-feature-selectors.component';
 import { ChapterContentShellComponent } from './chapter-content-shell/chapter-content-shell.component';
 import { ChapterHeadingModule } from '../chapter-heading/chapter-heading.module';
+import { BottomNavComponent } from './bottom-nav/bottom-nav.component';
+import { MaterialModule } from '../helpers/material.module';
 
 
 @NgModule({
@@ -37,11 +39,13 @@ import { ChapterHeadingModule } from '../chapter-heading/chapter-heading.module'
     StrongTypingComponent,
     UtilizingFeatureSelectorsComponent,
     ChapterContentShellComponent,
+    BottomNavComponent,
   ],
   imports: [
     CommonModule,
     ChapterContentRoutingModule,
-    ChapterHeadingModule
+    ChapterHeadingModule,
+    MaterialModule
 
 
   ]

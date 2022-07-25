@@ -1,0 +1,23 @@
+.bottom-container {
+  width: 100%;
+
+
+.navContainer {
+    width: 400px;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    ul.bottom-nav {
+
+      list-style: none;
+      li {
+        display: inline-block;
+      }
+    }
+    a {
+      text-decoration: none;
+    color: var(--primaryColor);
+    }
+  }
+
+}
