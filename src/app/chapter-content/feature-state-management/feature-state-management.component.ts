@@ -21,7 +21,7 @@ export class FeatureStateManagementComponent implements OnInit {
 
   myHeading = 'featureStateManagement';
   currentChapter: ChapterContent = defaultChapterContent;
-  chaptList$: Observable<ChapterContent[]>;
+  chaptList$: Observable<ChapterContent[]| undefined | null>;
   constructor(private menuStore: Store<fromMenu.State>) {
     this.chaptList$ = this.menuStore.pipe(select(fromMenu.getChapterListing));
    }
@@ -29,9 +29,11 @@ export class FeatureStateManagementComponent implements OnInit {
   ngOnInit(): void {
     this.chaptList$.subscribe(aa => {
       console.log(aa);
-      this.currentChapter = aa.find(i => i.name === this.myHeading) as ChapterContent;
+      if (aa) {
+        this.currentChapter = aa.find((i) => i.name === this.myHeading) as ChapterContent;
+          this.menuStore.dispatch(new MenuActions.SetCurrentChapter(this.currentChapter));
+      }
 
-      this.menuStore.dispatch(new MenuActions.SetCurrentChapter(this.currentChapter));
     });
 
   }

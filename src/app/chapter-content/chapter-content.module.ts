@@ -22,7 +22,7 @@ import { BottomNavComponent } from './bottom-nav/bottom-nav.component';
 import { MaterialModule } from '../helpers/material.module';
 
 
-@NgModule({
+@NgModule ({
   declarations: [
     ActionsComponent,
     CreatingSelectorsComponent,
@@ -46,8 +46,15 @@ import { MaterialModule } from '../helpers/material.module';
     ChapterContentRoutingModule,
     ChapterHeadingModule,
     MaterialModule
-
-
+  ],
+  entryComponents: [
+    BottomNavComponent
+  ],
+  exports: [
+    BottomNavComponent
   ]
+  // exports: [
+  //   BottomNavComponent
+  // ]
 })
 export class ChapterContentModule { }

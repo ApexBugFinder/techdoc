@@ -39,7 +39,7 @@ export const chapterContentListing: ChapterContent[] = [
 
 ];
 export const defaultChapterContentListing: ChapterContent[] = [
-  
+
     {
       index: 1,
       name: "introduction",

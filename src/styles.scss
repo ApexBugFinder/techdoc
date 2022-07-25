@@ -14,6 +14,10 @@ body { margin: 0; font-family: omnes-cyrillic,'Segoe UI', "Helvetica Neue", sans
 
 
 }
+.hoverClass {
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(112,112,112,0);
+    box-shadow: 5px 5px 15px 5px rgba(112,112,112,0);
+}
 .currentLink {
     color: red;
 }

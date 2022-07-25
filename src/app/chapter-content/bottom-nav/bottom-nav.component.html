@@ -1,10 +1,18 @@
 <div class="bottom-container">
-  <p>bottom-nav works!</p>
-
   <nav class="navContainer">
     <ul class="bottom-nav">
-      <li><a href="">Previous</a></li>
-      <li><a href="">Next</a></li>
+      <li>
+        <a (click)="onPrevious()" *ngIf="currentChapter.index > 1"
+          >Previous: {{ previousChapter.heading }}</a
+        >
+      </li>
+      <li>
+        <a
+          (click)="onNext()"
+          *ngIf="currentChapter.index < chapterlistingLength + 1"
+          >Next: {{ nextChapter.heading }}</a
+        >
+      </li>
     </ul>
   </nav>
 </div>
