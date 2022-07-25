@@ -16,7 +16,7 @@ import { ChapterContent } from "src/app/chapter-content/models/chapterContent";
 export class TopMenuComponent implements OnInit, AfterViewInit {
   @ViewChild("topNavBar") topMenu: ElementRef | undefined;
 
-  @Input() chapterList: ChapterContent[] | undefined | null= [];
+  @Input() chapterList: ChapterContent[] | undefined  |null= [];
 
   constructor() {}
   ngAfterViewInit(): void {
